@@ -4,7 +4,9 @@ var server          = require('http').Server(app);
 var io              = require('socket.io')(server);
 
 app.use(express.static('./public'));
-
+app.get("/ok",(req,res)=>{
+  res.send("okkkkkk");
+})
 //opening a socket connection and listening for event connection
 io.sockets.on('connection', function (socket) {
     console.log('a user connected',socket.id);
@@ -23,7 +25,6 @@ io.sockets.on('connection', function (socket) {
         console.log('data received \n %o',data)
         socket.send(data);
      })
-    
 })
 
 server.listen(4000, function(){
